@@ -39,10 +39,12 @@ document.querySelector(".del").onclick = function(){
     totalNum();
 }
 document.querySelector(".AC").onclick = function(){
-    firstNum='';
-    secondNum='';
-    finalNum='';
-    textbox.value='';
+    firstNum=' ';
+    secondNum=' ';
+    finalNum=' ';
+    textbox.value=' ';
+    operator='';
+    totalNum();
 
 }
 
@@ -62,47 +64,54 @@ function totalNum(){
     else if(secondNum != ""){
         textbox.value = secondNum;
         console.log('works');
+        if(delete1 == true){
+            secondNum = secondNum.substring(0,secondNum.length - 1);
+            console.log("seconddeletework");
+            delete1 = false;
+            totalNum();
+        }    
         }
+        
     }
     
 }
 
 
 var addition = function(){
-    operator = '+';
+    
     finalNum = parseFloat(firstNum) + parseFloat(secondNum);
     
 }
 var subtraction = function(){
-    operator = '-';
+    
     finalNum = parseFloat(firstNum) - parseFloat(secondNum);
 
 }
 var multiply = function(){
-    operator = '*';
+  
     finalNum = parseFloat(firstNum)*parseFloat(secondNum);
 
 }
 var division = function(){
-    operator = '/';
+    
     finalNum = parseFloat(firstNum)/parseFloat(secondNum);
 
 }
 
-var operate = function(){
-    if((operator = "+")){
+function operate(){
+    if((operator == "+")){
         addition();
         textbox.value = finalNum;
     }
-    else if((operator = "-")){
+    else if((operator == "-")){
         subtraction();
         textbox.value = finalNum;
     }
-    else if((operator = "*")){
+    else if((operator == "*")){
         multiply();
         textbox.value = finalNum;
     }
-    else if((operator = "/")){
+    else if((operator == "/")){
         division();
         textbox.value = finalNum;
     }
