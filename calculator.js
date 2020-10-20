@@ -1,8 +1,11 @@
 var number = document.querySelectorAll(".calcNum");
 var op = document.querySelectorAll(".op");
-var textbox =document.querySelector(".displayNum") ;
+var textbox = document.querySelector(".displayNum");
 var equals = document.querySelector(".equal");
 var delete1 = false;
+var decimal = false;
+var disp = "";
+textbox.value = 0;
 var firstNum = "";
 var operator = "";
 var secondNum = "";
@@ -12,7 +15,7 @@ number.forEach((button) => {
     button.addEventListener("click",function(){
         setNum = button.innerHTML;
         console.log(setNum);
-        if(operator==""){
+        if(operator===""){
             firstNum= firstNum+setNum;
             totalNum();
         }else{
@@ -25,6 +28,7 @@ number.forEach((button) => {
 op.forEach((button) =>{
     button.addEventListener("click",function(){
         operator = button.innerHTML;
+        decimal = false;
         console.log(operator);
     })
 })
@@ -33,6 +37,20 @@ equals.addEventListener("click",function(){
     console.log("equals")
 
 })
+document.querySelector(".decimal").onclick = function(){
+    if(decimal == false && operator===""){
+        firstNum += ".";
+        decimal = true;
+        totalNum();
+    }else if(decimal == false && operator!=""){
+        secondNum += ".";
+        decimal = true;
+        totalNum();
+    }
+    else{
+        alert("You can only press decimal once per number");
+    }
+}
 document.querySelector(".del").onclick = function(){
     delete1 = true;
     console.log("delete")
@@ -53,18 +71,17 @@ function totalNum(){
     if(firstNum != ""){
         textbox.value = firstNum;
         console.log("operatorworks")
-        if(delete1 == true){
+        if(delete1 === true){
             firstNum = firstNum.substring(0,firstNum.length - 1);
             console.log(true);
-           
             delete1 = false;
             totalNum();
             
         }
-    else if(secondNum != ""){
+    else if(secondNum !=""){
         textbox.value = secondNum;
         console.log('works');
-        if(delete1 == true){
+        if(delete1 === true){
             secondNum = secondNum.substring(0,secondNum.length - 1);
             console.log("seconddeletework");
             delete1 = false;
@@ -115,7 +132,10 @@ function operate(){
         division();
         textbox.value = finalNum;
     }
-    
+    firstNum = finalNum;
+    secondNum = '';
+    operator = '';
+    totalNum;
 }
 
 
