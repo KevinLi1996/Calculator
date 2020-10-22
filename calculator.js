@@ -112,7 +112,11 @@ var multiply = function(){
 var division = function(){
     
     finalNum = parseFloat(firstNum)/parseFloat(secondNum);
-
+    if(secondNum == 0){
+        
+        textbox.value = "The fuck you trying to??"
+        alert("stop");
+    }
 }
 
 function operate(){
