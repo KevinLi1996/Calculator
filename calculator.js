@@ -57,11 +57,12 @@ document.querySelector(".del").onclick = function(){
     totalNum();
 }
 document.querySelector(".AC").onclick = function(){
-    firstNum=' ';
-    secondNum=' ';
+    firstNum='';
+    secondNum='';
     finalNum=' ';
     textbox.value=' ';
     operator='';
+    textbox.value = 0;
     totalNum();
 
 }
