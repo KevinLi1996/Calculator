@@ -37,7 +37,7 @@ equals.addEventListener("click",function(){
     console.log("equals")
 
 })
-document.querySelector(".decimal").onclick = function(){
+document.querySelector(".decimal").onclick = function decimal1(){
     if(decimal == false && operator===""){
         firstNum += ".";
         decimal = true;
@@ -66,8 +66,30 @@ document.querySelector(".AC").onclick = function(){
     totalNum();
 
 }
-
-
+var store = "";
+window.addEventListener("keydown", (e) =>{
+    console.log(e.key);
+    if(e.key >=0 &&e.key<=9&& operator ===""){
+        firstNum += e.key;
+        totalNum();
+    }
+    else if(e.key >=0 &&e.key<=9&& operator !=""){
+        secondNum +=e.key;
+        totalNum();
+    }else if(e.key == "+"||e.key == "-"||e.key == "*"||e.key == "/"){
+        operator = e.key;
+        
+    }else if(e.key =="="){
+        operate();
+    }else if(e.key =="."){
+        decimal1();
+    }else if(e.key =="Enter"){
+        operate();
+    }else if(e.key =="Delete" || e.key =="Backspace"){
+        delete1 = true;
+        totalNum();
+    }
+});
 function totalNum(){
     if(firstNum != ""){
         textbox.value = firstNum;
