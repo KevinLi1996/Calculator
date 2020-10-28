@@ -2,6 +2,7 @@ var number = document.querySelectorAll(".calcNum");
 var op = document.querySelectorAll(".op");
 var textbox = document.querySelector(".displayNum");
 var equals = document.querySelector(".equal");
+var deci = document.querySelector(".decimal");
 var delete1 = false;
 var decimal = false;
 var disp = "";
@@ -15,21 +16,54 @@ number.forEach((button) => {
     button.addEventListener("click",function(){
         setNum = button.innerHTML;
         console.log(setNum);
+        
         if(operator===""){
+            
             firstNum= firstNum+setNum;
-            totalNum();
+            textbox.value = firstNum;
         }else{
+            
             secondNum = secondNum+setNum;
-            totalNum();
+            textbox.value = secondNum;
         }
 
     })
 });
+function totalNum(){
+    if(firstNum != ""){
+        textbox.value = firstNum;
+        console.log("operatorworks")
+        if(delete1 === true){
+            firstNum = firstNum.substring(0,firstNum.length - 1);
+            console.log(true);
+            delete1 = false;
+            totalNum();
+            
+        }
+    else if(secondNum !=""){
+        textbox.value = secondNum;
+        console.log('works');
+        if(delete1 === true){
+            secondNum = secondNum.substring(0,secondNum.length - 1);
+            console.log("seconddeletework");
+            delete1 = false;
+            totalNum();
+        }    
+        }
+        
+    }
+    
+}
 op.forEach((button) =>{
     button.addEventListener("click",function(){
+        if(firstNum ==""){
+            firstNum = 0;
+            secondNum = "";
+        }
         operator = button.innerHTML;
         decimal = false;
         console.log(operator);
+       
     })
 })
 equals.addEventListener("click",function(){
@@ -37,7 +71,8 @@ equals.addEventListener("click",function(){
     console.log("equals")
 
 })
-document.querySelector(".decimal").onclick = function decimal1(){
+
+var decimal1 = function (){
     if(decimal == false && operator===""){
         firstNum += ".";
         decimal = true;
@@ -51,10 +86,14 @@ document.querySelector(".decimal").onclick = function decimal1(){
         alert("You can only press decimal once per number");
     }
 }
+deci.addEventListener("click",decimal1);
+
 document.querySelector(".del").onclick = function(){
-    delete1 = true;
-    console.log("delete")
-    totalNum();
+    if(firstNum !=""){
+        delete1 = true;
+        console.log("delete")
+        totalNum();
+    }
 }
 document.querySelector(".AC").onclick = function(){
     firstNum='';
@@ -90,31 +129,7 @@ window.addEventListener("keydown", (e) =>{
         totalNum();
     }
 });
-function totalNum(){
-    if(firstNum != ""){
-        textbox.value = firstNum;
-        console.log("operatorworks")
-        if(delete1 === true){
-            firstNum = firstNum.substring(0,firstNum.length - 1);
-            console.log(true);
-            delete1 = false;
-            totalNum();
-            
-        }
-    else if(secondNum !=""){
-        textbox.value = secondNum;
-        console.log('works');
-        if(delete1 === true){
-            secondNum = secondNum.substring(0,secondNum.length - 1);
-            console.log("seconddeletework");
-            delete1 = false;
-            totalNum();
-        }    
-        }
-        
-    }
-    
-}
+
 
 
 var addition = function(){
